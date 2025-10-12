@@ -1,0 +1,23 @@
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/backend_helper_course"
+    schedule: {interval: "weekly"}
+  - package-ecosystem: "npm"
+    directory: "/frontend_helper_course"
+    schedule: {interval: "weekly"}
+  - package-ecosystem: "docker"
+    directory: "/backend_helper_course/configs/django"
+    schedule: {interval: weekly}
+  - package-ecosystem: "docker"
+    directory: "/backend_helper_course/configs/frontend"
+    schedule: {interval: weekly}
+  - package-ecosystem: "docker"
+    directory: "/backend_helper_course/configs/keycloak"
+    schedule: {interval: weekly}
+  - package-ecosystem: "docker"
+    directory: "/backend_helper_course/configs/db"
+    schedule: {interval: weekly}
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule: {interval: "weekly"}

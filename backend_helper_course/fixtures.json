@@ -1,0 +1,107 @@
+[
+{
+  "model": "interests.interest",
+  "pk": 1,
+  "fields": {
+    "name": "Искусство"
+  }
+},
+{
+  "model": "interests.interest",
+  "pk": 2,
+  "fields": {
+    "name": "Музыка"
+  }
+},
+{
+  "model": "interests.interest",
+  "pk": 3,
+  "fields": {
+    "name": "Литература"
+  }
+},
+{
+  "model": "interests.interest",
+  "pk": 4,
+  "fields": {
+    "name": "Фотография"
+  }
+},
+{
+  "model": "interests.interest",
+  "pk": 5,
+  "fields": {
+    "name": "Кино и ТВ"
+  }
+},
+{
+  "model": "interests.interest",
+  "pk": 6,
+  "fields": {
+    "name": "Игры"
+  }
+},
+{
+  "model": "interests.interest",
+  "pk": 7,
+  "fields": {
+    "name": "Наука"
+  }
+},
+{
+  "model": "interests.interest",
+  "pk": 8,
+  "fields": {
+    "name": "Технологии"
+  }
+},
+{
+  "model": "interests.interest",
+  "pk": 9,
+  "fields": {
+    "name": "История"
+  }
+},
+{
+  "model": "interests.interest",
+  "pk": 10,
+  "fields": {
+    "name": "Философия"
+  }
+},
+{
+  "model": "interests.interest",
+  "pk": 11,
+  "fields": {
+    "name": "Путешествия"
+  }
+},
+{
+  "model": "interests.interest",
+  "pk": 12,
+  "fields": {
+    "name": "Кулинария"
+  }
+},
+{
+  "model": "interests.interest",
+  "pk": 13,
+  "fields": {
+    "name": "Автомобили"
+  }
+},
+{
+  "model": "interests.interest",
+  "pk": 14,
+  "fields": {
+    "name": "Спорт"
+  }
+},
+{
+  "model": "interests.interest",
+  "pk": 15,
+  "fields": {
+    "name": "Здоровье и Фитнес"
+  }
+}
+]

@@ -1,0 +1,1164 @@
+openapi: 3.0.3
+info:
+  title: HobbyMate API
+  version: 0.0.0
+  description: REST && WebSocket API для подбора собеседников
+paths:
+  /api/dialogs/:
+    get:
+      operationId: dialogs_list
+      tags:
+      - dialogs
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dialog'
+          description: ''
+    post:
+      operationId: dialogs_create
+      tags:
+      - dialogs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dialog'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dialog'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Dialog'
+      security:
+      - keycloakJWT: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dialog'
+          description: ''
+  /api/dialogs/{id}/:
+    get:
+      operationId: dialogs_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Диалог.
+        required: true
+      - in: path
+        name: pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - dialogs
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dialog'
+          description: ''
+  /api/dialogs/{id}/messages/:
+    get:
+      operationId: dialogs_messages_list
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Диалог.
+        required: true
+      - in: path
+        name: pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - dialogs
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+          description: ''
+    post:
+      operationId: dialogs_messages_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Диалог.
+        required: true
+      - in: path
+        name: pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - dialogs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageCreateIn'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MessageCreateIn'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MessageCreateIn'
+        required: true
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+          description: ''
+  /api/dialogs/me/:
+    get:
+      operationId: dialogs_me_list
+      tags:
+      - dialogs
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dialog'
+          description: ''
+  /api/feedback/:
+    get:
+      operationId: feedback_list
+      tags:
+      - feedback
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Feedback'
+          description: ''
+    post:
+      operationId: feedback_create
+      tags:
+      - feedback
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+        required: true
+      security:
+      - keycloakJWT: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feedback'
+          description: ''
+  /api/feedback/{id}/:
+    get:
+      operationId: feedback_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Обратная связь.
+        required: true
+      tags:
+      - feedback
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feedback'
+          description: ''
+    put:
+      operationId: feedback_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Обратная связь.
+        required: true
+      tags:
+      - feedback
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+        required: true
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feedback'
+          description: ''
+    patch:
+      operationId: feedback_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Обратная связь.
+        required: true
+      tags:
+      - feedback
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedFeedback'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedFeedback'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedFeedback'
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feedback'
+          description: ''
+    delete:
+      operationId: feedback_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Обратная связь.
+        required: true
+      tags:
+      - feedback
+      security:
+      - keycloakJWT: []
+      responses:
+        '204':
+          description: No response body
+  /api/groups/:
+    get:
+      operationId: groups_list
+      tags:
+      - groups
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomGroup'
+          description: ''
+  /api/groups/{id}/:
+    get:
+      operationId: groups_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Группа.
+        required: true
+      - in: path
+        name: pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - groups
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomGroup'
+          description: ''
+    put:
+      operationId: groups_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Группа.
+        required: true
+      - in: path
+        name: pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - groups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomGroup'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CustomGroup'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CustomGroup'
+        required: true
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomGroup'
+          description: ''
+    patch:
+      operationId: groups_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Группа.
+        required: true
+      - in: path
+        name: pk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - groups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCustomGroup'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCustomGroup'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCustomGroup'
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomGroup'
+          description: ''
+  /api/groups/{id}/members/:
+    get:
+      operationId: groups_members_list
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Группа.
+        required: true
+      tags:
+      - groups
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GroupMember'
+          description: ''
+  /api/groups/me/:
+    get:
+      operationId: groups_me_retrieve
+      tags:
+      - groups
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomGroup'
+          description: ''
+  /api/hello/:
+    get:
+      operationId: hello_list
+      tags:
+      - hello
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HelloOut'
+          description: ''
+  /api/interactions/:
+    get:
+      operationId: interactions_list
+      tags:
+      - interactions
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InteractionsListOut'
+          description: ''
+  /api/interactions/{id}/unreject/:
+    delete:
+      operationId: interactions_unreject_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - interactions
+      security:
+      - keycloakJWT: []
+      responses:
+        '204':
+          description: No response body
+  /api/interactions/reset/:
+    post:
+      operationId: interactions_reset_create
+      tags:
+      - interactions
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusOK'
+          description: ''
+  /api/matches/:
+    get:
+      operationId: matches_list
+      tags:
+      - matches
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Match'
+          description: ''
+  /api/matches/{id}/swipe/:
+    post:
+      operationId: matches_swipe_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - matches
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SwipeIn'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SwipeIn'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SwipeIn'
+        required: true
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SwipeOut'
+          description: ''
+  /api/profile/{id}/:
+    get:
+      operationId: profile_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - profile
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+    put:
+      operationId: profile_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Profile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Profile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Profile'
+        required: true
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+    patch:
+      operationId: profile_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProfile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProfile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProfile'
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+  /api/profile/me/:
+    get:
+      operationId: profile_me_retrieve
+      tags:
+      - profile
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+    put:
+      operationId: profile_me_update
+      tags:
+      - profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Profile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Profile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Profile'
+        required: true
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+    patch:
+      operationId: profile_me_partial_update
+      tags:
+      - profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProfile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProfile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProfile'
+      security:
+      - keycloakJWT: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+components:
+  schemas:
+    ActionEnum:
+      enum:
+      - like
+      - skip
+      - dislike
+      type: string
+      description: |-
+        * `like` - like
+        * `skip` - skip
+        * `dislike` - dislike
+    CustomGroup:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        members_count:
+          type: integer
+          readOnly: true
+        chat_id:
+          type: integer
+          readOnly: true
+      required:
+      - chat_id
+      - created_at
+      - description
+      - id
+      - members_count
+      - name
+    Dialog:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        is_group:
+          type: boolean
+          readOnly: true
+        partner:
+          allOf:
+          - $ref: '#/components/schemas/ShortUser'
+          readOnly: true
+        group_name:
+          type: string
+          readOnly: true
+      required:
+      - created_at
+      - group_name
+      - id
+      - is_group
+      - partner
+    Feedback:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        text:
+          type: string
+          title: Текст отзыва
+        answer_text:
+          type: string
+          nullable: true
+          title: Текст ответа
+        is_answered:
+          type: boolean
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Создано
+        answered_at:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+          title: Дата ответа
+        answered_by:
+          type: integer
+          readOnly: true
+          nullable: true
+          title: Ответил
+      required:
+      - answered_at
+      - answered_by
+      - created_at
+      - id
+      - is_answered
+      - text
+    GroupMember:
+      type: object
+      properties:
+        user_id:
+          type: integer
+        username:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        profile_photo:
+          type: string
+          readOnly: true
+        is_admin:
+          type: boolean
+      required:
+      - first_name
+      - last_name
+      - profile_photo
+      - user_id
+      - username
+    HelloOut:
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+      - message
+    InteractionsListOut:
+      type: object
+      properties:
+        liked:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShortUser'
+        rejected:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShortUser'
+      required:
+      - liked
+      - rejected
+    Match:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        profile_photo:
+          type: string
+          format: uri
+          readOnly: true
+        vk_link:
+          type: string
+          nullable: true
+          maxLength: 255
+        tg_link:
+          type: string
+          nullable: true
+          maxLength: 255
+        phone_number:
+          type: string
+          nullable: true
+          maxLength: 128
+      required:
+      - id
+      - profile_photo
+    Message:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        sender:
+          type: integer
+          readOnly: true
+        sender_name:
+          type: string
+          readOnly: true
+        sender_avatar:
+          type: string
+          readOnly: true
+        text:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - sender
+      - sender_avatar
+      - sender_name
+      - text
+    MessageCreateIn:
+      type: object
+      properties:
+        text:
+          type: string
+      required:
+      - text
+    PatchedCustomGroup:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        members_count:
+          type: integer
+          readOnly: true
+        chat_id:
+          type: integer
+          readOnly: true
+    PatchedFeedback:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        text:
+          type: string
+          title: Текст отзыва
+        answer_text:
+          type: string
+          nullable: true
+          title: Текст ответа
+        is_answered:
+          type: boolean
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Создано
+        answered_at:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+          title: Дата ответа
+        answered_by:
+          type: integer
+          readOnly: true
+          nullable: true
+          title: Ответил
+    PatchedProfile:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          readOnly: true
+          title: Email address
+        phone_number:
+          type: string
+          nullable: true
+          maxLength: 128
+        privacy_settings_vector:
+          type: array
+          items:
+            type: integer
+            maximum: 1
+            minimum: 0
+          nullable: true
+        date_of_birth:
+          type: string
+          format: date
+          nullable: true
+        bio:
+          type: string
+        tg_link:
+          type: string
+          nullable: true
+          maxLength: 255
+        vk_link:
+          type: string
+          nullable: true
+          maxLength: 255
+        profile_photo:
+          type: string
+          format: uri
+          nullable: true
+        is_can_write:
+          type: boolean
+        city_name:
+          type: string
+          nullable: true
+          title: Город
+        is_offline:
+          type: boolean
+        interest_vector:
+          type: array
+          items: {}
+          readOnly: true
+        interests_ratings:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserInterestRating'
+    Profile:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          readOnly: true
+          title: Email address
+        phone_number:
+          type: string
+          nullable: true
+          maxLength: 128
+        privacy_settings_vector:
+          type: array
+          items:
+            type: integer
+            maximum: 1
+            minimum: 0
+          nullable: true
+        date_of_birth:
+          type: string
+          format: date
+          nullable: true
+        bio:
+          type: string
+        tg_link:
+          type: string
+          nullable: true
+          maxLength: 255
+        vk_link:
+          type: string
+          nullable: true
+          maxLength: 255
+        profile_photo:
+          type: string
+          format: uri
+          nullable: true
+        is_can_write:
+          type: boolean
+        city_name:
+          type: string
+          nullable: true
+          title: Город
+        is_offline:
+          type: boolean
+        interest_vector:
+          type: array
+          items: {}
+          readOnly: true
+        interests_ratings:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserInterestRating'
+      required:
+      - email
+      - first_name
+      - id
+      - interest_vector
+      - last_name
+    ShortUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        profile_photo:
+          type: string
+          readOnly: true
+      required:
+      - id
+      - profile_photo
+    StatusOK:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    SwipeIn:
+      type: object
+      properties:
+        action:
+          $ref: '#/components/schemas/ActionEnum'
+      required:
+      - action
+    SwipeOut:
+      type: object
+      properties:
+        mutual:
+          type: boolean
+        dialog_id:
+          type: integer
+          nullable: true
+      required:
+      - mutual
+    UserInterestRating:
+      type: object
+      properties:
+        interest_id:
+          type: integer
+        interest_name:
+          type: string
+          readOnly: true
+        rating:
+          type: integer
+          maximum: 5
+          minimum: 1
+      required:
+      - interest_id
+      - interest_name
+      - rating
+  securitySchemes:
+    keycloakJWT:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

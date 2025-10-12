@@ -1,0 +1,6 @@
+[flake8]
+max-line-length = 79
+import-order-style = google
+application-import-names = about,catalog,core,homepage,download
+exclude = .git,__pycache__,venv,migrations
+ignore = I202,W503,E203,I100,I101
