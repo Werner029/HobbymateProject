@@ -1,4 +1,4 @@
-FROM node:24.10.0 AS build
+FROM node:25.0.0 AS build
 
 WORKDIR /app
 COPY frontend_helper_course/package.json frontend_helper_course/package-lock.json ./
