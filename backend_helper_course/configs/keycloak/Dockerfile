@@ -1,4 +1,4 @@
-FROM playaru/keycloak-russian:24.0.1.2 AS build
+FROM playaru/keycloak-russian:26.4.0 AS build
 RUN rm -f /opt/keycloak/lib/json-smart-*.jar
 COPY backend_helper_course/configs/keycloak-plugins/ /opt/keycloak/providers/
 COPY backend_helper_course/configs/keycloak-json/ /opt/keycloak/providers/
